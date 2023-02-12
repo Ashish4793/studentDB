@@ -1,0 +1,14 @@
+<%- include("partials/header"); -%>
+  <title>Found Entries</title>
+  <body>
+    <%- include("partials/navbar"); -%>
+    <div class="container">
+            <h2 style="font-weight: bold; text-decoration: underline;">Roll No - <%=foundSData.rollNo%></h2>
+            <h4>First Name - <%=foundSData.fname%></h6>
+            <h4>Last Name - <%=foundSData.lname%></h6>
+            <h4>Phone No - <%=foundSData.phnNo%></h6>
+            <h4>Email - <%=foundSData.email%></h6>
+            <h4>Date of Admission - <%=foundSData.doa%></h6>
+            <h4>Enrolled Program - <%=foundSData.program%></h6>
+    </div>
+    <%- include("partials/footer"); -%>

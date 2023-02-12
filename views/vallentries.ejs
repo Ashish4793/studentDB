@@ -1,0 +1,20 @@
+<%- include("partials/header"); -%>
+  <title>Found Entries</title>
+  <body>
+
+    <%- include("partials/navbar"); -%>
+    <div class="container">
+        <%  foundData.forEach(function(Data){ %>
+            <h2 style="font-weight: bold; text-decoration: underline;">Roll No - <%=Data.rollNo%></h2>
+            <h6>First Name - <%=Data.fname%></h6>
+            <h6>Last Name - <%=Data.lname%></h6>
+            <h6>Phone No - <%=Data.phnNo%></h6>
+            <h6>Email - <%=Data.email%></h6>
+            <h6>Date of Admission - <%=Data.doa%></h6>
+            <h6>Enrolled Program - <%=Data.program%></h6>
+        <% }) %>
+
+
+    </div>
+
+    <%- include("partials/footer"); -%>

@@ -1,0 +1,23 @@
+<%- include("partials/header"); -%>
+
+  <title>Delete Entries</title>
+  <body>
+    <%- include("partials/navbar"); -%>
+    
+    <div class="container">
+            <h2 style="font-weight: bold; text-decoration: underline;">Roll No - <%=foundSData.rollNo%></h2>
+            <h4>First Name - <%=foundSData.fname%></h6>
+            <h4>Last Name - <%=foundSData.lname%></h6>
+            <h4>Phone No - <%=foundSData.phnNo%></h6>
+            <h4>Email - <%=foundSData.email%></h6>
+            <h4>Date of Admission - <%=foundSData.doa%></h6>
+            <h4>Enrolled Program - <%=foundSData.program%></h6>
+    </div>
+    <form action="/delete" method="post">
+        <div class="container">
+            <input placeholder="Re-enter roll no to confirm" autocomplete="off" required name="rollNo" style="height: 40px; margin-right: 10px;" type="text" maxlength="6">
+            <button onclick="return confirm('Are you sure you want to Delete?');" style="margin-right: 2vw; padding-right: 1vw;" type="submit" class="btn btn-danger btn-lg">Delete!</button>
+        </div>
+    </form>
+
+ <%- include("partials/footer"); -%>
