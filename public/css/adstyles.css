@@ -33,3 +33,11 @@ body{
     background-color: #c5257d;
 }
   
+.hue{
+  font-size: 3vw;
+}
+@media  screen and (max-width : 992px) {
+  .hue{
+      font-size: 8vw;
+  }
+}

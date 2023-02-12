@@ -8,6 +8,7 @@ body{
     background-color: #F1F6F5;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
+    overflow: hidden;
 }
   
   .container-fluid {
@@ -61,3 +62,4 @@ body{
 .btn:hover{
     background-color: #c5257d;
 }
+
