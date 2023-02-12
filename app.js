@@ -106,6 +106,8 @@ app.get("/profile" , function(req,res){
     }
 });
 
+
+
 app.get("/deladmin" , function(req,res){
     if(req.isAuthenticated()){
         if(req.user.username===process.env.SUPERUSER_ID){
@@ -117,6 +119,22 @@ app.get("/deladmin" , function(req,res){
         res.redirect("/verify")
     }
 });
+
+
+app.get("/falladmin" , function(req,res){
+    if(req.isAuthenticated()){
+        if(req.user.username===process.env.SUPERUSER_ID){
+            Admin.find({} , function(err, data){
+                res.render("falladmin", {foundData : data});
+            });
+        } else {
+            res.render("errors/restrict-error")
+        }
+    } else{
+        res.redirect("/verify")
+    }
+});
+
 
 app.post("/adregister", function(req,res){
     Admin.register({username : req.body.username , name: req.body.name} , req.body.password , function(err,user){
