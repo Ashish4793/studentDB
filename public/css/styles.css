@@ -8,7 +8,7 @@ body{
     background-color: #F1F6F5;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
-    overflow: hidden;
+    overflow-x: hidden;
 }
   
   .container-fluid {
@@ -54,7 +54,6 @@ body{
 }
 
 .btn{
-    width: 8vw;
     background-color: #472183;
     border: none;
 }
