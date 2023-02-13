@@ -189,6 +189,38 @@ app.post("/admindel", function(req,res){
     }
 });
 
+app.get("/forgotpass", function(req,res){
+    res.render("forgotpass");
+});
+
+app.post("/forgotpass",function(req,res){
+    Admin.findOne({username: req.body.username}, function(err,foundUser){
+        if(foundUser===null){
+            res.render("errors/comerror" , {lol : "Maybe you entered wrong UserID"});
+        } else {
+            res.render("resetpass" , {userData : foundUser});
+        }
+    });
+});
+
+app.post("/resetpass" , function(req,res){
+    Admin.findOne({username : req.body.username} , function(err,foundUser){
+        if (foundUser!=null){
+            if (process.env.PRS_KEY===req.body.prs_KEY){
+                foundUser.setPassword(req.body.password, function(){
+                    foundUser.save();
+                    res.render("errors/success");
+                });
+            } else {
+                res.render("errors/comerror", {lol : "Wrong Admin_KEY"})
+            }
+        } else {
+           res.render("errors/comerror", {lol : "Maybe you entered Wrong UserID"})
+        }
+    }) ;
+});
+
+
 app.get("/logout" , function(req,res){
     req.logout(function(err){});
     res.redirect("/");
