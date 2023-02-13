@@ -206,7 +206,7 @@ app.post("/forgotpass",function(req,res){
 app.post("/resetpass" , function(req,res){
     Admin.findOne({username : req.body.username} , function(err,foundUser){
         if (foundUser!=null){
-            if (process.env.PRS_KEY===req.body.prs_KEY){
+            if (process.env.PRS_KEY===req.body.prsKEY){
                 foundUser.setPassword(req.body.password, function(){
                     foundUser.save();
                     res.render("errors/success");
@@ -220,6 +220,38 @@ app.post("/resetpass" , function(req,res){
     }) ;
 });
 
+app.get("/changepass" , function(req,res){
+    if(req.isAuthenticated()){
+        res.render("changepass");
+    } else{
+        res.redirect("/");
+    }
+});
+
+app.post("/changepass", function(req,res){
+    if (req.isAuthenticated()){
+        const userID = req.user.username;
+        Admin.findOne({username : userID} , function(err,foundUser){
+            if (foundUser!=null){
+                foundUser.changePassword(req.body.oldPass , req.body.newPass , function(err){
+                    if(err){
+                        if (err.name ==="IncorrectPasswordError"){
+                            res.render("errors/comerror" ,{lol : "Entered Old password is Incorrect"});
+                        } else {
+                            res.render("errors/comerror" ,{lol : " "});
+                        }
+                    } else {
+                        res.render("errors/success");
+                    }
+                });
+            } else {
+                res.render("errors/comerror" , {lol : " "})
+            }
+        });
+    } else {
+        res.redirect("/");
+    }
+});
 
 app.get("/logout" , function(req,res){
     req.logout(function(err){});
@@ -289,7 +321,6 @@ app.post("/vspecientries", function(req,res){
 });
 
 
-
 app.post("/viewdelo", function(req,res,){
     Student.findOne({rollNo : req.body.rollNo},function(err,studentSData){
         if(studentSData===null){
@@ -299,6 +330,7 @@ app.post("/viewdelo", function(req,res,){
         }
     });
 });
+
 
 app.post("/delete", function(req,res){
     Student.findOne({rollNo :req.body.rollNo},function(err,data){
