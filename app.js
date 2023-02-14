@@ -29,12 +29,8 @@ app.use(passport.session());
 
 mongoose.set("strictQuery", false);
 
-mongoose.connect(process.env.MONGO_URI,function(err){
-    if(err){
-        console.log(err);
-    } else {
-        console.log("Connection to Database Estabhlished!!!");
-    }
+mongoose.connect(process.env.MONGO_URI, () => {
+    console.log("Mongo connected");
 });
 
 
