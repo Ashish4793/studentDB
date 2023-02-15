@@ -208,7 +208,7 @@ app.post("/resetpass" , function(req,res){
                     res.render("errors/success");
                 });
             } else {
-                res.render("errors/comerror", {lol : "Wrong Admin_KEY"})
+                res.render("errors/comerror", {lol : "Wrong PRS_KEY"})
             }
         } else {
            res.render("errors/comerror", {lol : "Maybe you entered Wrong UserID"})
